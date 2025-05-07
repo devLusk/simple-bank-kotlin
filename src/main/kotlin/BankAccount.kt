@@ -20,7 +20,7 @@ class BankAccount(
     }
 
     fun withdraw(amount: Double) {
-        if (amount <= balance) {
+        if (amount > 0 && amount <= balance) {
             balance -= amount
             transactionHistory.add("Withdrawal of $$amount")
             println("Withdrawal of $$amount was successful.")
@@ -33,11 +33,12 @@ class BankAccount(
     fun displayTransactionHistory() {
         println("\nTransaction history for $accountHolder:")
         if (transactionHistory.isEmpty()) {
-            println("No transactions have been recorded for this account.")
+            println("No transactions have been recorded for this account.\n")
         } else {
             for ((index, item) in transactionHistory.withIndex()) {
                 println("${index + 1}. $item")
             }
+            println()
         }
     }
 }
